@@ -19,5 +19,5 @@ const routePermission = {
     apiPOST: [],
   },
 };
-
+ 
 module.exports = routePermission;

@@ -1,4 +1,4 @@
-const allowlist = ["http://localhost:5173", "http://localhost:5000"];
+const allowlist = ["https://deeplearns.vercel.app", "http://localhost:5000"];
 
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
@@ -12,7 +12,7 @@ const corsOptionsDelegate = function (req, callback) {
         } else {
           corsOptions = { origin: false };
         }
-      } else if (req.header("Origin") === "http://localhost:5173") {
+      } else if (req.header("Origin") === "https://deeplearns.vercel.app") {
         let requestAccept = ["GET", "POST"];
         if (requestAccept.indexOf(intendedMethod) !== -1) {
           corsOptions = { origin: true };
@@ -22,7 +22,7 @@ const corsOptionsDelegate = function (req, callback) {
       }
     } else {
       corsOptions = { origin: false };
-    }
+    } 
   } else if (
     req.method === "GET" ||
     req.method === "POST" ||
@@ -38,7 +38,7 @@ const corsOptionsDelegate = function (req, callback) {
         } else {
           corsOptions = { origin: false };
         }
-      } else if (req.header("Origin") === "http://localhost:5173") {
+      } else if (req.header("Origin") === "https://deeplearns.vercel.app") {
         let requestAccept = ["GET", "POST"];
         if (requestAccept.indexOf(req.method) !== -1) {
           corsOptions = { origin: true };

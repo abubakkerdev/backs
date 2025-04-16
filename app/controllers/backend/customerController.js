@@ -1,6 +1,6 @@
 const customerModel = require("../../models/customer");
 let cloudinary = require("../../utils/cloudinary");
-
+ 
 const handleAllCustomer = async (req, res) => {
   const allCustomers = await customerModel.find(
     {},
