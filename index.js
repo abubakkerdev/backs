@@ -8,7 +8,7 @@ const databaseConnect = require("./app/database/mongodb");
 const routes = require("./app/routes");
 const http = require("http");
 const cors = require("cors");
-const corsPermission = require("./app/config/backend/corsConfig");
+// const corsPermission = require("./app/config/backend/corsConfig");
 const app = express();
 const port = process.env.APP_PORT;
 const server = http.createServer(app);
@@ -23,7 +23,18 @@ app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
 
 // Cors site permission 
-app.use(cors(corsPermission));
+// app.use(cors(corsPermission));
+
+const corsOptions = {
+  origin: [
+    "https://scovan.vercel.app",
+    "https://sumondev.vercel.app",
+  ],
+  optionsSuccessStatus: 200,
+};
+
+// Cors site permission
+app.use(cors(corsOptions));
 
 // Using cookie-parser middleware with a secret key
 app.use(cookieParser(cookieSecretKey)); 
@@ -33,6 +44,8 @@ const io = socketIo(server, {
     origin: ["https://jomaas-admin-panel.vercel.app", "https://deeplearndl.vercel.app"],
   },
 });
+
+
 
 io.on("connection", function (socket) {
   socketConnection(io, socket);
